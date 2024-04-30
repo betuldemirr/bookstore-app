@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'AIzaSyAlLHP3hLyscu9NfakV2BXQiCQ4OyAOE4g';
+const API_KEY = '';
 
 const api = async (searchTerm) => {
     try {
