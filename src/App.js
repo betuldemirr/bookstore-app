@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BookList from './components/BookList';
 import SearchBar from './components/SearchBar';
-import api from './api';
+import api from './services/api';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const App = () => {
