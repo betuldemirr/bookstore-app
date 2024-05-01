@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const SearchBar = ({ onSearch }) => {
-
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleInputChange = (event) => {

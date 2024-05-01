@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Modal, Button } from 'react-bootstrap';
 
-const Book = ({ book }) => {
+const BookDetail = ({ book }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -30,8 +30,8 @@ const Book = ({ book }) => {
           <Modal.Title>{book.volumeInfo.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p><strong>Authors:</strong> {book.volumeInfo.authors.join(', ')}</p>
-          <p><strong>Description:</strong> {book.volumeInfo.description}</p>
+          <p><strong>Authors:</strong> {book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown'}</p>
+          <p><strong>Description:</strong> {book.volumeInfo.description ? book.volumeInfo.description : 'No description available'}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
@@ -41,4 +41,4 @@ const Book = ({ book }) => {
   );
 };
 
-export default Book;
+export default BookDetail;

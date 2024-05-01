@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = process.env.BOOKS_API_KEY;
+const API_KEY = 'AIzaSyAlLHP3hLyscu9NfakV2BXQiCQ4OyAOE4g';
 
 const api = async (searchTerm) => {
     try {
