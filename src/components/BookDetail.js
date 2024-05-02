@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Modal, Button } from 'react-bootstrap';
-import { getBookId } from '../services/api';
+import { getBookDetails } from '../services/api';
 
 const BookDetail = ({ book }) => {
     const [showModal, setShowModal] = useState(false);
@@ -11,7 +11,7 @@ const BookDetail = ({ book }) => {
     });
 
     const fetchPrice = async () => {
-        const bookDetails = await getBookId(book.id);
+        const bookDetails = await getBookDetails(book.id);
         if (bookDetails && bookDetails.saleInfo && bookDetails.saleInfo.listPrice && bookDetails.saleInfo.listPrice.amount) {
             setPrice(bookDetails.saleInfo.listPrice.amount);
         } else {
