@@ -9,45 +9,49 @@ const BookDetail = ({ book, addToCart }) => {
     useEffect(() => {
         const fetchPrice = async () => {
             const bookDetails = await getBookDetails(book.id);
-            if (bookDetails && bookDetails.saleInfo && bookDetails.saleInfo.listPrice && bookDetails.saleInfo.listPrice.amount) {
+
+            if (bookDetails && bookDetails.saleInfo && bookDetails.saleInfo.listPrice.amount !== '') {
                 setPrice(bookDetails.saleInfo.listPrice.amount);
             } else {
-                console.error('Price data not available.');
+                console.error('Price data not available for book with ID:', book.id);
             }
         };
         fetchPrice();
     }, [book.id]);
 
-    const handleShowModal = () => {
+
+    const onShowModal = () => {
         setShowModal(true);
     };
 
-    const handleCloseModal = () => {
+    const onCloseModal = () => {
         setShowModal(false);
     };
 
-    const handleAddToCart = () => {
+    const onAddToCart = () => {
         addToCart(book);
     };
 
     return (
         <>
             <Card className="h-100" >
-                <Card.Body onClick={handleShowModal}>
+                <Card.Body onClick={onShowModal}>
                     {book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? (
                         <Card.Img variant="top" src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
                     ) : (
                         <div className="d-flex justify-content-center align-items-center h-100">No Picture Available</div>
                     )}
                     <Card.Title>{book.volumeInfo.title}</Card.Title>
-                    {price && <p>Price: {price}</p>}
+                    {price !== null &&                     
+                        <Card.Text>Price: {price}</Card.Text>
+                    }
                 </Card.Body>
                 <Card.Footer>
-                    <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
+                    <Button className='w-100' variant="primary" onClick={onAddToCart}>Add to Cart</Button>
                 </Card.Footer>
 
             </Card>
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={onCloseModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>{book.volumeInfo.title}</Modal.Title>
                 </Modal.Header>
@@ -56,7 +60,7 @@ const BookDetail = ({ book, addToCart }) => {
                     <p><strong>Description:</strong> {book.volumeInfo.description ? book.volumeInfo.description : 'No description available'}</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>Close</Button>
+                    <Button variant="secondary" onClick={onCloseModal}>Close</Button>
                 </Modal.Footer>
             </Modal>
         </>
