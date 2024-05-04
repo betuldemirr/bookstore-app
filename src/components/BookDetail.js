@@ -2,28 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Card, Modal, Button } from 'react-bootstrap';
 import { getBookDetails } from '../services/api';
 
-const BookDetail = ({ book }) => {
+const BookDetail = ({ book, addToCart }) => {
     const [showModal, setShowModal] = useState(false);
     const [price, setPrice] = useState(null);
 
     useEffect(() => {
+        const fetchPrice = async () => {
+            const bookDetails = await getBookDetails(book.id);
+            if (bookDetails && bookDetails.saleInfo && bookDetails.saleInfo.listPrice && bookDetails.saleInfo.listPrice.amount) {
+                setPrice(bookDetails.saleInfo.listPrice.amount);
+            } else {
+                console.error('Price data not available.');
+            }
+        };
         fetchPrice();
-    });
-
-    const fetchPrice = async () => {
-        const bookDetails = await getBookDetails(book.id);
-        if (bookDetails && bookDetails.saleInfo && bookDetails.saleInfo.listPrice && bookDetails.saleInfo.listPrice.amount) {
-            setPrice(bookDetails.saleInfo.listPrice.amount);
-        } else {
-            console.error('Price data not available.');
-        }
-    };
+    }, [book.id]);
 
     const handleShowModal = () => {
         setShowModal(true);
     };
+
     const handleCloseModal = () => {
         setShowModal(false);
+    };
+
+    const handleAddToCart = () => {
+        addToCart(book);
     };
 
     return (
@@ -39,13 +43,13 @@ const BookDetail = ({ book }) => {
                     {price && <p>Price: {price}</p>}
                 </Card.Body>
                 <Card.Footer>
-                    <Button variant="primary">Add to Cart</Button>
+                    <Button variant="primary" onClick={handleAddToCart}>Add to Cart</Button>
                 </Card.Footer>
 
             </Card>
             <Modal show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
-                <Modal.Title>{book.volumeInfo.title}</Modal.Title>
+                    <Modal.Title>{book.volumeInfo.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <p><strong>Authors:</strong> {book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown'}</p>
