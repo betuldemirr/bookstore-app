@@ -1,3 +1,15 @@
+# Book Store App
+
+This project is a react application that can search and add to cart with data from the Google Book API.
+
+The hooks used in this project are as follows; useState, useEffect.
+
+This project Bootstrap library was used in the design.
+
+This project Sass library was used in the style.
+
+*** In this project, the API KEY value has been changed. ***
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
