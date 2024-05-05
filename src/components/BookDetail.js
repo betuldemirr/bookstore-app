@@ -41,9 +41,9 @@ const BookDetail = ({ book, addToCart }) => {
                     ) : (
                         <div className="d-flex justify-content-center align-items-center h-100">No Picture Available</div>
                     )}
-                    <Card.Title>{book.volumeInfo.title}</Card.Title>
+                    <Card.Title className='py-2'>{book.volumeInfo.title}</Card.Title>
                     {price !== null &&                     
-                        <Card.Text>Price: {price}</Card.Text>
+                        <Card.Text>Price: {price} {book.saleInfo.listPrice.currencyCode}</Card.Text>
                     }
                 </Card.Body>
                 <Card.Footer>

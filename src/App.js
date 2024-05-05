@@ -38,7 +38,6 @@ const App = () => {
                     </Button>
                 </Navbar.Text>
             </Navbar>
-
             <h3 className="text-center text-muted my-1">Browse the search results please...</h3>
             <SearchBar onSearch={searchBooksHandler}/>
             <BookList books={books} addToCart={addToCart} />
