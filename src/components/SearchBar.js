@@ -22,7 +22,7 @@ const SearchBar = ({ onSearch }) => {
                 <Form.Control type="text" placeholder="Search for books..." value={searchTerm} onChange={handleInputChange} />
               </Col>
               <Col xs={3}>
-                <Button variant="primary" onClick={handleSearch} className="w-100">Search</Button>
+                <Button variant="dark" onClick={handleSearch} className="w-100">Search</Button>
               </Col>
             </Row>
           </Form>

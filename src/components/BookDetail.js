@@ -47,7 +47,7 @@ const BookDetail = ({ book, addToCart }) => {
                     }
                 </Card.Body>
                 <Card.Footer>
-                    <Button className='w-100' variant="primary" onClick={onAddToCart}>Add to Cart</Button>
+                    <Button className='w-100 h-100' variant="light" onClick={onAddToCart}>Add to Cart</Button>
                 </Card.Footer>
 
             </Card>
