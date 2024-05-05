@@ -9,6 +9,7 @@ This project Bootstrap library was used in the design.
 This project Sass library was used in the style.
 
 *** In this project, the API KEY value has been changed. ***
+This project was bootstrapped with [Google Books Api](https://developers.google.com/books/docs/v1/getting_started?hl=tr).
 
 # Getting Started with Create React App
 
